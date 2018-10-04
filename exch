@@ -1,0 +1,17 @@
+#dodaj moduł exchange
+Add-PSSnapin Microsoft.Exchange.Management.PowerShell.SnapIn;
+
+#wypisz wyszstkie uprawnienia do skrzynki
+Get-MailboxPermission -Identity kontakt@nestbank.pl
+
+#wypisz uprawnienia danego usera
+Get-MailboxPermission -Identity kontakt@nestbank.pl -User "mhajduk1"
+
+
+Get-mailbox wjp | get-adpermission -user kkaszuba | fl
+
+#wypisz grupy
+Get-Group -Filter 'EmailAddresses -like "*Oddzial*"' | select WindowsEmailAddress
+
+#wypisz wszystkie grupy dynamiczne z słowem oddział
+Get-DynamicDistributionGroup | where {$_.PrimarySmtpAddress -like "*Oddzial*"} | select name, PrimarySmtpAddress
